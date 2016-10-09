@@ -1,0 +1,129 @@
+2016-10-09 10:39:50,945 - app.origin - ERROR - 生成html失败!
+Traceback (most recent call last):
+  File "/home/yang/PycharmProjects/Guitarpa/app/core/download.py", line 20, in for_url
+    request = urllib2.Requesturl(item_url)
+AttributeError: 'module' object has no attribute 'Requesturl'
+2016-10-09 10:39:50,945 - app.origin - ERROR - 导入pdf失败!
+Traceback (most recent call last):
+  File "/home/yang/PycharmProjects/Guitarpa/app/core/download.py", line 36, in for_pdf
+    c = canvas.Canvas(+self.title+".pdf")
+AttributeError: Down instance has no attribute 'title'
+2016-10-09 10:44:21,916 - app.origin - ERROR - 生成html失败!
+Traceback (most recent call last):
+  File "/home/yang/PycharmProjects/Guitarpa/app/core/download.py", line 20, in for_url
+    request = urllib2.Requesturl(url)
+AttributeError: 'module' object has no attribute 'Requesturl'
+2016-10-09 10:44:21,933 - app.origin - ERROR - 导入pdf失败!
+Traceback (most recent call last):
+  File "/home/yang/PycharmProjects/Guitarpa/app/core/download.py", line 36, in for_pdf
+    c = canvas.Canvas(+self.title+".pdf")
+AttributeError: Down instance has no attribute 'title'
+2016-10-09 10:50:47,852 - app.origin - ERROR - 生成html失败!
+Traceback (most recent call last):
+  File "/home/yang/PycharmProjects/Guitarpa/app/core/download.py", line 20, in for_url
+    with urllib.request.urlopen(page_url) as url:
+AttributeError: 'module' object has no attribute 'request'
+2016-10-09 10:50:47,853 - app.origin - ERROR - 导入pdf失败!
+Traceback (most recent call last):
+  File "/home/yang/PycharmProjects/Guitarpa/app/core/download.py", line 38, in for_pdf
+    c = canvas.Canvas(+self.title+".pdf")
+AttributeError: Down instance has no attribute 'title'
+2016-10-09 11:05:20,443 - app.origin - ERROR - 导入pdf失败!
+Traceback (most recent call last):
+  File "/home/yang/PycharmProjects/Guitarpa/app/core/download.py", line 39, in for_pdf
+    c = canvas.Canvas(+self.title+".pdf")
+TypeError: bad operand type for unary +: 'unicode'
+2016-10-09 11:10:05,638 - app.origin - ERROR - 导入pdf失败!
+Traceback (most recent call last):
+  File "/home/yang/PycharmProjects/Guitarpa/app/core/download.py", line 56, in for_pdf
+    c.save()
+  File "/home/yang/guitar/local/lib/python2.7/site-packages/reportlab/pdfgen/canvas.py", line 1237, in save
+    self._doc.SaveToFile(self._filename, self)
+  File "/home/yang/guitar/local/lib/python2.7/site-packages/reportlab/pdfbase/pdfdoc.py", line 221, in SaveToFile
+    f = open(filename, "wb")
+IOError: [Errno 2] No such file or directory: u'/data/pdf/\u9648\u695a\u751f\u300a\u59d1\u5a18(\u9ad8\u6e05\u7248)\u300b.pdf'
+2016-10-09 11:11:07,375 - app.origin - ERROR - 导入pdf失败!
+Traceback (most recent call last):
+  File "/home/yang/PycharmProjects/Guitarpa/app/core/download.py", line 56, in for_pdf
+    c.save()
+  File "/home/yang/guitar/local/lib/python2.7/site-packages/reportlab/pdfgen/canvas.py", line 1237, in save
+    self._doc.SaveToFile(self._filename, self)
+  File "/home/yang/guitar/local/lib/python2.7/site-packages/reportlab/pdfbase/pdfdoc.py", line 221, in SaveToFile
+    f = open(filename, "wb")
+IOError: [Errno 2] No such file or directory: u'/data/pdf/\u5d14\u5065\u300a\u82b1\u623f\u59d1\u5a18\u300b.pdf'
+2016-10-09 11:12:54,220 - app.origin - ERROR - 导入pdf失败!
+Traceback (most recent call last):
+  File "/home/yang/PycharmProjects/Guitarpa/app/core/download.py", line 56, in for_pdf
+    c.save()
+  File "/home/yang/guitar/local/lib/python2.7/site-packages/reportlab/pdfgen/canvas.py", line 1237, in save
+    self._doc.SaveToFile(self._filename, self)
+  File "/home/yang/guitar/local/lib/python2.7/site-packages/reportlab/pdfbase/pdfdoc.py", line 221, in SaveToFile
+    f = open(filename, "wb")
+IOError: [Errno 2] No such file or directory: u'/app/data/pdf/\u674e\u6653\u6770\u300a\u597d\u59d1\u5a18\u300b.pdf'
+2016-10-09 13:24:49,409 - app.origin - ERROR - 导入pdf失败!
+Traceback (most recent call last):
+  File "/home/yang/PycharmProjects/Guitarpa/app/core/download.py", line 57, in for_pdf
+    c.save()
+  File "/home/yang/guitar/local/lib/python2.7/site-packages/reportlab/pdfgen/canvas.py", line 1237, in save
+    self._doc.SaveToFile(self._filename, self)
+  File "/home/yang/guitar/local/lib/python2.7/site-packages/reportlab/pdfbase/pdfdoc.py", line 221, in SaveToFile
+    f = open(filename, "wb")
+IOError: [Errno 2] No such file or directory: u'/pdf/\u7ea6\u7ff0\xb7\u5df4\u54c8\u8d1d\u5c14\u300a\u5361\u519c(\u9ad8\u6e05\u7248)\u300b.pdf'
+2016-10-09 13:27:44,762 - app.origin - ERROR - 导入pdf失败!
+Traceback (most recent call last):
+  File "/home/yang/PycharmProjects/Guitarpa/app/core/download.py", line 57, in for_pdf
+    c.save()
+  File "/home/yang/guitar/local/lib/python2.7/site-packages/reportlab/pdfgen/canvas.py", line 1237, in save
+    self._doc.SaveToFile(self._filename, self)
+  File "/home/yang/guitar/local/lib/python2.7/site-packages/reportlab/pdfbase/pdfdoc.py", line 221, in SaveToFile
+    f = open(filename, "wb")
+IOError: [Errno 2] No such file or directory: u'/pdf/\u513f\u6b4c\u300a\u54c7\u54c8\u54c8\u300b.pdf'
+2016-10-09 13:30:01,036 - app.origin - ERROR - 导入pdf失败!
+Traceback (most recent call last):
+  File "/home/yang/PycharmProjects/Guitarpa/app/core/download.py", line 57, in for_pdf
+    c.save()
+  File "/home/yang/guitar/local/lib/python2.7/site-packages/reportlab/pdfgen/canvas.py", line 1237, in save
+    self._doc.SaveToFile(self._filename, self)
+  File "/home/yang/guitar/local/lib/python2.7/site-packages/reportlab/pdfbase/pdfdoc.py", line 221, in SaveToFile
+    f = open(filename, "wb")
+IOError: [Errno 2] No such file or directory: u'/pdf/\u7ea6\u7ff0\xb7\u5df4\u54c8\u8d1d\u5c14\u300a\u5361\u519c(\u9ad8\u6e05\u7248)\u300b.pdf'
+2016-10-09 13:39:33,421 - app.origin - ERROR - 导入pdf失败!
+Traceback (most recent call last):
+  File "/home/yang/PycharmProjects/Guitarpa/app/core/download.py", line 57, in for_pdf
+    c.save()
+  File "/home/yang/guitar/local/lib/python2.7/site-packages/reportlab/pdfgen/canvas.py", line 1237, in save
+    self._doc.SaveToFile(self._filename, self)
+  File "/home/yang/guitar/local/lib/python2.7/site-packages/reportlab/pdfbase/pdfdoc.py", line 221, in SaveToFile
+    f = open(filename, "wb")
+IOError: [Errno 2] No such file or directory: u'/data/Johann.pdf'
+2016-10-09 13:45:13,990 - app.origin - ERROR - 导入pdf失败!
+Traceback (most recent call last):
+  File "/home/yang/PycharmProjects/Guitarpa/app/core/download.py", line 53, in for_pdf
+    dim=c.drawImage(name,0,0)
+  File "/home/yang/guitar/local/lib/python2.7/site-packages/reportlab/pdfgen/canvas.py", line 946, in drawImage
+    imgObj = pdfdoc.PDFImageXObject(name, image, mask=mask)
+  File "/home/yang/guitar/local/lib/python2.7/site-packages/reportlab/pdfbase/pdfdoc.py", line 2098, in __init__
+    src = open_for_read(source)
+  File "/home/yang/guitar/local/lib/python2.7/site-packages/reportlab/lib/utils.py", line 672, in open_for_read
+    raise IOError('Cannot open resource "%s"' % name)
+IOError: Cannot open resource "Johann1"
+2016-10-09 14:55:36,125 - app.origin - ERROR - 生成html失败!
+Traceback (most recent call last):
+  File "/home/yang/PycharmProjects/Guitarpa/app/core/download.py", line 30, in for_url
+    self.title=bs.find("h2").string.split(' ')[0]# 把后面难看的‘吉他谱’三个字去掉
+AttributeError: 'NoneType' object has no attribute 'string'
+2016-10-09 14:55:36,164 - app.origin - ERROR - 导入pdf失败!
+Traceback (most recent call last):
+  File "/home/yang/PycharmProjects/Guitarpa/app/core/download.py", line 41, in for_pdf
+    filename = self.title+".pdf"
+AttributeError: Download instance has no attribute 'title'
+2016-10-09 14:55:36,164 - app.origin - ERROR - reponse失败!
+Traceback (most recent call last):
+  File "/home/yang/PycharmProjects/Guitarpa/app/core/download.py", line 72, in res
+    response = Response(self.c)
+AttributeError: Download instance has no attribute 'c'
+2016-10-09 14:56:34,865 - app.origin - ERROR - reponse失败!
+Traceback (most recent call last):
+  File "/home/yang/PycharmProjects/Guitarpa/app/core/download.py", line 72, in res
+    response = Response(self.c)
+AttributeError: Download instance has no attribute 'c'

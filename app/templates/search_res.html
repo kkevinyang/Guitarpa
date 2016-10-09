@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Guitarpa - Search{% endblock %}
+
+{% block page_content %}
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td class="col-md-2"> 曲名 </td>
+                    <td class="col-md-4"> 演唱者 </td>
+                    <td class="col-md-2"> 服务 </td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for yishou in result %}
+                <tr>
+                    <td class="col-md-2"> <a href="http://{{ yishou.item_url }}"> {{ yishou.name }} </td>
+                    <td class="col-md-2"> {{ yishou.author }} </a></td>
+                    <td class="col-md-2"> <a href="{{ url_for('.download',id=yishou.id) }}">　下载　</a></td>
+                    {% if current_user.is_authenticated %}
+                    <td class="col-md-2"> 发送 </a></td>
+                    {% else %}
+                    <td class="col-md-2"> 发送</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

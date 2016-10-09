@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Guitarpa{% endblock %}
+
+{% block page_content %}
+<div class="container">
+    <!--新来访者提示-->
+    {% if not current_user.is_authenticated %}
+    <div class="jumbotron">
+        <h1>欢迎使用Guitarpa推送服务！</h1>
+        <p>
+         这是由我学习Flask和爬虫后制作并发布的网站，主要功能是搜索吉他谱的关键字后选择自己想要的结果，然后推送到你的邮箱或者kindle上（记得设置信任邮箱哦！）
+            有了它，再也不用苦逼地一张张保存,命名,编号再传到其他设备上了！赶紧试一试吧！</p>
+        <p>
+            ｐｓ：将pdf传到IPAD上看体验会更好：)
+        </p>
+        <p>
+            如果有什么建议的话，可以注册后给我留言
+            <a class="btn btn-primary btn-large" href="{{ url_for('auth.register') }}">Register</a>
+        </p>
+    </div>
+    {% endif %}
+</div>
+
+
+{{ wtf.quick_form(form) }}
+
+
+{% endblock %}
+

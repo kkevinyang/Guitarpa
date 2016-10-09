@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block page_content %}
+<h1>DO you need?</h1>
+<% response.addHeader("Content-Disposition", "attachment; filename="+filename.encode('utf-8') %>
+{% endblock %}
