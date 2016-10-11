@@ -1,25 +1,24 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
-from flask import render_template, redirect, url_for, abort, flash, Response,make_response
+from flask import render_template, redirect, url_for, abort, flash, make_response
 from . import main
 from .forms import EditProfileForm,SearchForm,MessageForm
 from ..core import Search, Download
 from flask_login import login_required, current_user,AnonymousUserMixin
 from .. import db
 from ..models import Message
-from ..sendemail import sendto_kindle
-#from .. import app
-
+from ..sendemail import send_loc_email
 from bs4 import BeautifulSoup
 import urllib2, urllib
-import re
 from reportlab.pdfgen import canvas
+import re
 import os
-from ..loggers  import orilogger
-from flask import Response
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
+
+from ..core import USER_AGENTS
+import random
 
 @main.route('/',methods=['GET', 'POST'])
 def index():
@@ -39,22 +38,28 @@ def search_res(keyword):
     else:
         flash('请输入关键词！')
         return redirect(url_for('.index'))
-'''
-@main.route('/download/<id>')
-def download(id):
-    try:
-        flash(id)
-        Download(id)
-        return render_template('index.html',response=response)
-    except:
+
+@main.route('/send/<id>')
+@login_required
+def send(id):
+    if current_user.send_loc == None:
+        flash(u'请先填写你要接受推送的邮箱')
         return redirect(url_for('main.edit_profile'))
-'''
+    else:
+        send_loc_email(current_user.send_loc,id)
+        flash(u'你的推送已加入任务队列，请注意查收。')
+    return redirect(url_for('.index'))
+
+
+
 @main.route('/download/<id>')
 def download(id):
     #try:
     #获取html
     page_url = 'http://www.yuesir.com/ipu/' + str(id) + '.html'
-    request = urllib2.Request(page_url)
+    user_agent = random.choice(USER_AGENTS)
+    headers = { 'User-Agent' : user_agent }
+    request = urllib2.Request(page_url, None, headers)
     response = urllib2.urlopen(request)
     html = response.read()
     # 获取标题
@@ -100,108 +105,18 @@ def download(id):
     response.headers['Content-Disposition'] = "attachment; filename=" + only_name.encode('utf-8')
     return response
 
-    '''
-        a = open(filename)
-    print callable(a)
-    #with open(filename,'r') as t:
-      #  return t
-        #return t.read().decode('utf-8')
-    #print callable(t)
-
-    #content = open(filename.read(), 'rb')#, 'utf-8')
-    response = make_response(t)
-    response.headers["Content-Disposition"] = "attachment; filename="+filename.encode('utf-8')
-    response.headers["Content-Type"] = "application/pdf"
-    flash(id)
-
-    return response
-    content.close()
-    #Download(id)
-    #return render_template('index.html',response=response)
-   # except:
-       # return render_template('try.html',filename=filename)
-        #return redirect(url_for('main.edit_profile'))
-
-    #a = open(filename)
-    print callable(a)
-    #with open(filename,'r') as t:
-      #  return t
-        #return t.read().decode('utf-8')
-    #print callable(t)
-
-    #content = open(filename.read(), 'rb')#, 'utf-8')
-    response = make_response(t)
-    response.headers["Content-Disposition"] = "attachment; filename="+filename.encode('utf-8')
-    response.headers["Content-Type"] = "application/pdf"
-    flash(id)
-
-    return response
-    content.close()
-    #Download(id)
-    #return render_template('index.html',response=response)
-   # except:
-       # return render_template('try.html',filename=filename)
-        #return redirect(url_for('main.edit_profile'))
-'''
-
-
-
-
-'''
-@main.route('/download/<author>/<name>/<item_url>')
-@login_required
-
-def download():
-    #if current_user.kindle_loc == None:
-       # flash(u'请先填写你的邮箱!')
-    #else:
-        #hardtask.delay(current_user.kindle_loc,origin,bookid,bookname)
-        #Down(item_url)
-        #sendto_kindle(current_user.kindle_loc, name=name)
-        #flash(u'你的推送已加入任务队列，请注意查收。')
-    #return redirect(url_for('.index'))
-        return render_template('try.html')
-
-
-
-@main.route('/download/<id>')
-def download(id):
-
-    try:
-        flash(id)
-        Download(id)
-    except:
-        return redirect(url_for('.index'))
-    #res()
-    #return response
-    #return render_template('download.html',qu_id = id)
-
-@main.route('/download_result/<id>')
-def download_result(id):
-    flash(id)
-    with app.open_resource(u"core/" + name + u'.pdf') as po:
-        content = po
-    response = Response(content)
-    #response = make_response(content)
-    flash('get')
-    response.headers["Content-Disposition"] = "attachment; filename=筷子兄弟《老男孩》.pdf"
-    response.headers["Content-Type"] = "application/pdf"
-    return response
-    #return render_template('download.html')
-'''
 
 @main.route('/edit-profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
     form = EditProfileForm()
     if form.validate_on_submit():
-        current_user.kindle_loc = form.kindle_loc.data
-
+        current_user.send_loc = form.send_loc.data
         db.session.add(current_user)
         db.session.commit()
         flash(u'你的信息已更新.')
         return redirect(url_for('.index'))
-    form.kindle_loc.data = current_user.kindle_loc
+    form.send_loc.data = current_user.send_loc
     return render_template('edit_profile.html', form=form)
 
 @main.route('/letschat',methods = ['GET','POST'])
@@ -219,3 +134,7 @@ def letschat():
         db.session.commit()
         return redirect(url_for('.letschat'))
     return render_template('letschat.html',messages = messages,form = form)
+
+@main.route('/about',methods = ['GET','POST'])
+def about():
+    return render_template('about.html')

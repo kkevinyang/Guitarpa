@@ -13,7 +13,7 @@ class SearchForm(FlaskForm):
     submit = SubmitField(u'搜索')
 
 class EditProfileForm(FlaskForm):
-    kindle_loc = StringField(u'推送邮箱：', validators=[Length(0, 64),Email()])
+    send_loc = StringField(u'推送邮箱：', validators=[Length(0, 64),Email()])
 
     submit = SubmitField(u'保存')
 

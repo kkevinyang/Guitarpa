@@ -16,7 +16,7 @@ class User(UserMixin, db.Model):
 
     password_hash = db.Column(db.String(128))
     confirmed = db.Column(db.Boolean, default=False)
-    kindle_loc = db.Column(db.String)
+    send_loc = db.Column(db.String)
     messages = db.relationship('Message',backref='user')
 
 

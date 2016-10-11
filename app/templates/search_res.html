@@ -10,7 +10,8 @@
                 <tr>
                     <td class="col-md-2"> 曲名 </td>
                     <td class="col-md-4"> 演唱者 </td>
-                    <td class="col-md-2"> 服务 </td>
+                    <td class="col-md-2"> 下载服务 </td>
+                    <td class="col-md-2"> 推送服务 </td>
                 </tr>
             </thead>
             <tbody>
@@ -20,7 +21,7 @@
                     <td class="col-md-2"> {{ yishou.author }} </a></td>
                     <td class="col-md-2"> <a href="{{ url_for('.download',id=yishou.id) }}">　下载　</a></td>
                     {% if current_user.is_authenticated %}
-                    <td class="col-md-2"> 发送 </a></td>
+                    <td class="col-md-2"> <a href="{{ url_for('.send',id=yishou.id) }}"> 发送 </a></td>
                     {% else %}
                     <td class="col-md-2"> 发送</td>
                     {% endif %}

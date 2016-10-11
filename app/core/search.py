@@ -6,6 +6,10 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 
+from anti_crawl import USER_AGENTS
+import random
+
+
 class Qupu:
     name = ''
     author = ''
@@ -21,10 +25,13 @@ class Search:
     def search_aiyuepu(self):
         self.res_list = []
         _searchurl = 'http://www.yuesir.com/ipu/search.php?kw=' + self.keyword
+        user_agent = random.choice(USER_AGENTS)
+        headers = { 'User-Agent' : user_agent }
+
         the_res = []
         #qupu = Qupu()
         #获取html
-        request = urllib2.Request(_searchurl)
+        request = urllib2.Request(_searchurl, None, headers)
         response = urllib2.urlopen(request)
         page = response.read()
         #　用正则匹配结果的信息
