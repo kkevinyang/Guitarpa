@@ -6,7 +6,8 @@ from reportlab.pdfgen import canvas
 import os
 from ..loggers  import orilogger
 from flask import Response
-
+from anti_crawl import USER_AGENTS
+import random
 # 此文件已不用
 # 此文件已不用
 # 此文件已不用
@@ -28,7 +29,9 @@ class Download:
         try:
             #获取html
             page_url = 'http://www.yuesir.com/ipu/' + str(self.id) + '.html'
-            request = urllib2.Request(page_url)
+            user_agent = random.choice(USER_AGENTS)
+            headers = { 'User-Agent' : user_agent }
+            request = urllib2.Request(page_url, None, headers)
             response = urllib2.urlopen(request)
             html = response.read()
             #with urllib.request.urlopen(page_url) as url:
@@ -47,8 +50,8 @@ class Download:
 
     def for_pdf(self):
         try:
-            filename = self.title+".pdf"
-            c = canvas.Canvas(u"app/data/" + self.title+u".pdf")
+            filename = u"app/data/" + self.title+u".pdf"
+            c = canvas.Canvas(filename)
             i = 1
             for pic_url in self.pic_urls:
                 # 写入图片
@@ -66,14 +69,9 @@ class Download:
                 #删除原gif
                 os.remove(name)
             c.save()
-            response = Response(c)
-            response.headers["Content-Disposition"] = "attachment; filename='laonanha.pdf'"
-            response.headers["Content-Type"] = "application/pdf"
-
-            return response
-
-
+            return filename
         except:
             orilogger.exception(u'导入pdf失败!')
+
 
 
